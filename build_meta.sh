@@ -1,16 +1,5 @@
 set -e
 
-# this might take a while
-sudo apt-get update
-sudo apt-get install -y --force-yes python-software-properties
-
-# add the ppa that contains an updated g++
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo apt-get update
-
-# this will probably take a while
-sudo apt-get install -y --force-yes g++ g++-4.8 git make wget libjemalloc-dev zlib1g-dev
-
 wget http://www.cmake.org/files/v3.2/cmake-3.2.0-Linux-x86_64.sh --no-check-certificate > /dev/null
 sudo sh cmake-3.2.0-Linux-x86_64.sh --prefix=/usr/local --skip-license
 
