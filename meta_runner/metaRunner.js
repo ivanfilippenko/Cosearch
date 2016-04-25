@@ -1,7 +1,7 @@
 var exec = require('exec');
 
-exports.runQuery = function(query, callback) {
-	exec(['./run.sh', query], function(err, out, code) {
+module.exports = function(query, callback) {
+	exec(['/vagrant/meta_runner/run.sh', query], function(err, out, code) {
 		if (err instanceof Error) {
 			throw err;
 		}
