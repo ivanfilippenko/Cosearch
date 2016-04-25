@@ -15,5 +15,5 @@ sudo npm install -g gulp-cli
 sudo npm install -g bower
 
 cp -r /vagrant/meta_runner /tmp/
-sudo chmod +rw -R /tmp/meta_runner/
+sudo chmod 777 -R /tmp/meta_runner/
 sudo chmod +x /vagrant/meta_runner/run.sh
