@@ -37,7 +37,7 @@ gulp.task('develop', function() {
 
 gulp.task('project', function() {
   var projects = [
-    'git clone --verbose --progress git@github.com:apache/cassandra.git projects/cassandra'
+    'git clone --verbose --progress http://github.com/apache/cassandra.git projects/cassandra'
   ];
   
   var run = exec(projects.join(' && '));
