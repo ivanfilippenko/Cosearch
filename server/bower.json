@@ -1,0 +1,16 @@
+{
+  "name": "assignment3-0",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.1",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "fontawesome#~4.5.0",
+    "mustache.js": "mustache#^2.2.1",
+    "moment": "^2.12.0"
+  }
+}
