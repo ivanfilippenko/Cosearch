@@ -1,6 +1,6 @@
 var exec = require('exec');
 
-exports.run_query = function(query, callback) {
+exports.runQuery = function(query, callback) {
 	exec(['./run.sh', query], function(err, out, code) {
 		if (err instanceof Error) {
 			throw err;
