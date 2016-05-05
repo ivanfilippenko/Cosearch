@@ -1,17 +1,38 @@
+html,
+body {
+  height: 100%;
+}
 body {
   padding-top: 70px;
   overflow-y: scroll;
 }
-* {
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer */
-  -khtml-user-select: none;
-  /* KHTML browsers (e.g. Konqueror) */
-  -webkit-user-select: none;
-  /* Chrome, Safari, and Opera */
-  -webkit-touch-callout: none;
-  /* Disable Android and iOS callouts*/
-  user-select: none;
+.navbar-search-container {
+  margin-left: 100px;
+  margin-right: 30px;
+  border: 0px;
+}
+.result-container .result-item {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+  padding: 10px 5px;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+.code-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+  padding: 10px 5px;
+  word-wrap: break-word;
+  white-space: pre;
+  position: fixed;
+  top: 70px;
+  overflow-y: scroll;
+  width: 100%;
+  display: none;
+  background: transparent;
+}
+.linenumber {
+  color: #ff006d;
 }
