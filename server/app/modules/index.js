@@ -1,6 +1,7 @@
 'use strict';
 
 var dir = require('node-dir');
+var path = require('path');
 
 var getClass = require('./getNames').getClass;
 var getFunctions = require('./getNames').getFunctions;
@@ -14,7 +15,7 @@ var mappingData = [];
 var counter = 0;
 
 module.exports = function() {
-  dir.readFiles('./projects', {
+  dir.readFiles(path.join(__dirname, '../../projects'), {
     encoding: 'utf8',
     match: /((.)+)\.java/i
   }, function(err, content, next) {
@@ -37,8 +38,13 @@ module.exports = function() {
     for (var i = 0; i < mappingData.length; i++) {
       mappingData[i].fileName = files[mappingData[i].fileIndex];
     }
-    fs.writeFileSync('./public/data/collection.dat', collectionContent, 'utf-8');
-    fs.writeFileSync('./public/data/mapping.json', JSON.stringify(mappingData), 'utf-8');
+    
+    var dir = path.join(__dirname, '/../../public/data');
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+    fs.writeFileSync(path.join(dir, './collection.dat'), collectionContent, 'utf-8');
+    fs.writeFileSync(path.join(dir, './mapping.json'), JSON.stringify(mappingData), 'utf-8');
     if (err) throw err;
   });
 };

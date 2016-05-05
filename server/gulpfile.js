@@ -3,6 +3,8 @@ var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   livereload = require('gulp-livereload'),
   less = require('gulp-less'),
+  clean = require('gulp-clean'),
+  runSequence = require('run-sequence'),
   exec = require('child_process').exec,
   crawl = require('./app/modules/index');
 
@@ -35,18 +37,33 @@ gulp.task('develop', function() {
   });
 });
 
-gulp.task('project', function() {
+gulp.task('emptyProject', function() {
+  return gulp.src('projects', {read: false})
+    .pipe(clean({force: true}));
+});
+
+gulp.task('project', function(callback) {
   var projects = [
     'git clone --verbose --progress git@github.com:apache/cassandra.git projects/cassandra'
   ];
   
-  var run = exec(projects.join(' && '));
+  var run = exec(projects.join(' && '), function(err) {
+    callback(err);
+  });
   run.stdout.pipe(process.stdout);
   run.stderr.pipe(process.stderr);
 });
 
 gulp.task('crawl', function() {
   crawl();
+});
+
+gulp.task('prep', function() {
+  runSequence(
+    'emptyProject',
+    'project',
+    'crawl'
+  );
 });
 
 gulp.task('default', [
