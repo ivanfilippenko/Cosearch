@@ -5,14 +5,14 @@ $(function() {
       $resultContainer = $('.result-container'),
       $codeContainer = $('.code-container'),
       $resultItemTemplate = $('#result-item-template');
-  
+
   $codeContainer.css('width', $codeContainer.parent().width() + 'px');
   $codeContainer.css('height', $(document).height() - 80 + 'px');
-  
+
   $query.focus(function() {
     $(this).select();
   });
-  
+
   var search = function(query) {
     // className, content, fileIndex, fileName, lineNumber
     $.ajax({
@@ -28,25 +28,29 @@ $(function() {
           str += Mustache.render($resultItemTemplate.html(), data[i]);
         }
         $resultContainer.html(str);
+        var $searched = $('.result-item');
+        for (var i = 0; i < $searched.length; i++) {
+            hljs.highlightBlock($searched[i]);
+        }
       }
-    });  
+    });
   };
-  
+
   $query.keyup(function(e) {
     if (e.keyCode === 13) {
       $query.select();
       if ($query.val().trim().length > 0) {
         search(encodeURIComponent($query.val().trim()));
-      }  
+      }
     }
   });
-  
+
   $searchButton.click(function() {
     if ($query.val().trim().length > 0) {
       search(encodeURIComponent($query.val().trim()));
     }
   });
-  
+
   $resultContainer.on('click', '.result-item', function() {
     $.ajax({
       url: '/api/file/' + encodeURIComponent($(this).data('filename')),
